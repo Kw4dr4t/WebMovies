@@ -1,0 +1,21 @@
+{% extends 'main.html' %}
+
+{% block title %} Confirm {% endblock %}
+
+{% block page %}
+<div class="mx-auto card" style="width: 42rem;">
+    <div class="card-body">
+        <h3 class="card-title">You want to delete "{{movie.title}}"?</h3>
+        <form method="post">
+            {%csrf_token%}
+            <button type="submit" class="btn btn-danger">Yes, I'm sure</button>
+            <a href="{% url 'all_movies' %}" class="btn btn-primary"><i class="fas fa-angle-left"></i>Back</a>
+
+        </form>
+
+    </div>
+</div>
+
+
+
+{% endblock %}

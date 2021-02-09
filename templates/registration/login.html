@@ -1,0 +1,31 @@
+{% extends 'main.html' %}
+{% load bootstrap %}
+{% block title %} Login {% endblock %}
+
+{% block page %}
+
+<style>
+    body {
+        padding: 2rem;
+        color: rgb(255, 255, 255);
+        margin-top: 16rem;
+        background: url('/media/posters/Dark.jpg') no-repeat center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        background-size: cover;
+        -o-background-size: cover;
+
+    }
+</style>
+<div class="mx-auto card" style="width: 26rem;">
+    <div class="card-body">
+        <h5 class="card-title">Login</h5>
+        <form method="post">
+            {% csrf_token %}
+            {{form|bootstrap}}
+            <button type='submit' class="btn btn-primary">login <i class="fas fa-sign-in-alt"></i>
+            </button>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends 'main.html' %}
+{% load bootstrap %}
+
+
+{% block title %} Movies list {% endblock %}
+
+
+{% block page %}
+
+
+<div class="mx-auto jumbotron">
+    {% if user.is_authenticated %}
+    <h1 class="display-6"> Hi <b>{{ user.username }}</b></h1>
+    <a href="{% url 'login' %}" class="btn btn-outline-success">Logout<i class="fas fa-sign-out-alt"></i></a>
+    {%else%}
+    <a href="{% url 'logout' %}" class="btn btn-outline-success">Login<i class="fas fa-sign-in-alt"></i></a>
+    {%endif%}
+</div>
+
+<a href="{% url 'new_movie' %}" class="btn btn-outline-success">Add new movie <i class="fas fa-plus-square"></i></a>
+
+
+{% if movies|length == 0 %}
+
+<h2>Brak filmów</h2>
+
+{% else %}
+
+{% for movie in movies %}
+
+<div class="mx-auto card" style="width: 46rem">
+    <div class="card-body">
+        <img src="/media/{{movie.poster}}" class="movie-poster">
+        <div class="row">
+            <div class="col-9">
+                <h5 class="card-title">{{ movie }}</h5>
+            </div>
+            <div class="col-3">
+                <a href="{% url 'edit_movie' movie.id %}"><i class="fas fa-2x fa-edit movie-icon"></i></a>
+                <a href="{% url 'delete_movie' movie.id %}"><i class="fas fa-2x fa-trash movie-icon"></i></a>
+            </div>
+        </div>
+        <div class="row">
+            <p class="card-text description">{{ movie.description }}</p>
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% endif %}
+{% endblock %}
